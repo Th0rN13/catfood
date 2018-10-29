@@ -2,8 +2,6 @@
     div
         div.menu
             router-link(to="/") Shop
-            | !{'    '}
-            router-link(to="card") Card
         slot
 </template>
 

@@ -6,16 +6,13 @@ import SingleCard from '@/pages/SingleCard'
 Vue.use(Router)
 
 export default new Router({
+  mode: 'history',
+  base: window.location.pathName,
   routes: [
     {
       path: '/',
       name: 'FrontPage',
       component: FrontPage
-    },
-    {
-      path: '/card',
-      name: 'SingleCard',
-      component: SingleCard
     }
   ]
 })
