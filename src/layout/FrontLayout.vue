@@ -62,6 +62,7 @@ body
     min-height: 100vh
     height: 100%
     justify-content: space-between
+    overflow-x: hidden
 
 a
     text-decoration: none

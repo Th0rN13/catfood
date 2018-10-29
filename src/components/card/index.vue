@@ -1,6 +1,6 @@
 <template lang="pug">
   .card-one(:class="{'active': isActive , 'disabled': isDisabled }")
-    .card(@click="swapActive",@contextmenu.prevent="swapDisabled")
+    .card(@click="swapActive", @contextmenu.prevent="swapDisabled")
         .card-title Сказочное заморское яство
         .card-block
             .description
@@ -12,6 +12,7 @@
             .weight {{weight}}
                 small кг
             .backimage
+    .card-text-mq Кот слишком жирный
     .card-text(v-if="isActive") {{description}}
     .card-text.disabled(v-else-if="isDisabled") Печалька, {{content}} закончился.
     .card-text(v-else) Чего сидишь? Порадуй котэ,
@@ -35,7 +36,7 @@
         data() {
             return {
                 isActive: this.initActive,
-                isDisabled: this.initDisabled
+                isDisabled: this.initDisabled,
             }
         },
         methods: {
@@ -58,7 +59,7 @@
 @import "../../styles/_vars.sass"
 .card-one.active
     .card
-        transform: rotateY(180deg)
+        transform: perspective(1000px) rotateY(360deg)
         &-title
             border-top: $border-width solid $active-color
             border-right: $border-width solid $active-color
@@ -72,18 +73,30 @@
 .card-one.active:hover
     .card
         &-title
-            border-top: $border-width solid $active-color
-            border-right: $border-width solid $active-color
+            border-top: $border-width solid $active-hover-color
+            border-right: $border-width solid $active-hover-color
             &::after
-                border-bottom: $angle-size solid $active-color
+                border-bottom: $angle-size solid $active-hover-color
         &-block
-            border: $border-width solid $active-color
+            border: $border-width solid $active-hover-color
             border-top: none
             .weight
-                background-color: $active-color
+                background-color: $active-hover-color
+.card-one:hover
+    .card
+        &-title
+            border-top: $border-width solid $default-hover-color
+            border-right: $border-width solid $default-hover-color
+            &::after
+                border-bottom: $angle-size solid $default-hover-color
+        &-block
+            border: $border-width solid $default-hover-color
+            border-top: none
+            .weight
+                background-color: $default-hover-color
 .card-one.disabled
     .card
-        transform: rotateX(180deg)
+        transform: perspective(1000px) rotateX(360deg)
         &-title
             color: rgba($semilight-color, 0.5)
             border-top: $border-width solid #b3b3b3
@@ -102,15 +115,15 @@
             .backimage
                 opacity: 0.5
 .card-one
-    animation:
     display: flex
+    margin: 20px
     flex-direction: column
     justify-items: center
     align-items: center
     min-width: 25%
     .card
+        transition: transform 0.2s
         perspective: 1000px
-        transition: transform 2s
         position: relative
         width: 320px
         height: 480px
@@ -210,5 +223,14 @@
             font-weight: 700
     .card-text.disabled
         color: #ffff66
+    .card-text-mq
+        display: none
+    @media screen and (max-width:319px)
+        .card
+            display: none
+        .card-text
+            display: none
+        .card-text-mq
+            display: flex
 </style>
 

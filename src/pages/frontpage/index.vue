@@ -42,7 +42,7 @@ export default {
 <style lang="sass">
 .section
     width: 100vw
-    height: calc(100vh - 20px)
+    min-height: calc(100vh - 20px)
     background-color: #ecf0f1
     display: flex
     justify-content: center
@@ -64,6 +64,7 @@ export default {
         padding: 20px 0
         display: flex
         flex-direction: row
+        flex-wrap: wrap
         justify-content: space-around
         align-content: center
 </style>
